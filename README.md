@@ -1,9 +1,9 @@
-# Juniper PyEZ Example: Retrieve Route Table
+# Juniper PyEZ Example: Retrieve Version Information
 
 This example will show how to use PyEZ to 
 
 1. build a NETCONF connection to a remote device
-2. execute the RPC command of `get-route-information`
+2. execute the RPC command of `get-software-information`
 3. print the output to the screen
 
 ## 🚀 `Executing the script`
@@ -78,11 +78,11 @@ import json
 
 with Device(host='dallas-fw0', user='automation', password='juniper123') as network_device:
     try:
-        route_table = network_device.rpc.get_route_information({'format': 'json'})
+        show_version = network_device.rpc.get_software_information({'format': 'json'})
     except:
         pass
 
-pprint(route_table)
+pprint(show_version)
 ```
 
 - We need to import the PyEZ package into our script
@@ -112,20 +112,20 @@ with Device(host='dallas-fw0', user='automation', password='juniper123') as netw
 - here we tell Python to "try to do this code, but if you get an exemption, go about your day"
 - the code we're running in `try/exempt` is making a remote proceedure call (RPC) for the routing table
 - we pass an argument into the request, asking for the return payload be structured in JSON
-- the resulting output from the RPC is stored in a new object called `route_table`
+- the resulting output from the RPC is stored in a new object called `show_version`
 
 ```python
     try:
-        route_table = network_device.rpc.get_route_information({'format': 'json'})
+        show_version = network_device.rpc.get_software_information({'format': 'json'})
     except:
         pass
 ```
 
-- finally, we are simply printing out the object `route_table` to the screen.
+- finally, we are simply printing out the object `show_version` to the screen.
 - using the `pprint` function we imported at the top of the screen, we get basic formatting of our object.
 
 ```python
-pprint(route_table)
+pprint(show_version)
 ```
 
 
